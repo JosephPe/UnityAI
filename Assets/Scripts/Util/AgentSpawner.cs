@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class AgentSpawner : MonoBehaviour
 {
-    public Agent agent;
+    public Agent[] agents;
     public LayerMask layerMask;
+
+    int index = 0;
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Tab)) index = ++index & agents.Length;
+
+        if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftControl)))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hitInfo, 100, layerMask))
             {
-                Instantiate(agent, hitInfo.point, Quaternion.identity);
+                Instantiate(agents[index], hitInfo.point, Quaternion.AngleAxis(Random.Range(0, 360), Vector3.up));
             }
         }
     }

@@ -6,7 +6,7 @@ public class Movement : MonoBehaviour
 {
     [Range(1, 10)] public float maxSpeed = 5;
     [Range(1, 10)] public float minSpeed = 5;
-    [Range(1, 10)] public float maxForce = 5;
+    [Range(1, 100)] public float maxForce = 5;
 
     public Vector3 velocity { get; set; } = Vector3.zero;
     public Vector3 acceleration { get; set; } = Vector3.zero;
@@ -17,6 +17,11 @@ public class Movement : MonoBehaviour
     {
         acceleration += force;
     }
+	public void MoveTowards(Vector3 target)
+	{
+		Vector3 direction = (target - transform.position).normalized;
+		ApplyForce(direction * maxForce);
+	}
 
     void LateUpdate()
     {

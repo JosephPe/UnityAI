@@ -5,14 +5,16 @@ TagManager:
   serializedVersion: 2
   tags:
   - AgentObstruction
+  - Agent2
+  - Agent1
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Spawn
   - Water
   - UI
-  - 
+  - World
   - 
   - 
   - 
